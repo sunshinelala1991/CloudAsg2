@@ -10,6 +10,9 @@ if len(sys.argv) > 1:
 app = application = bottle.Bottle()
 bottle.TEMPLATE_PATH.insert(0, PATH+'/views')
 
+sys.path.append(PATH)
+from task_vitual import Task
+
 @app.route('/static/<filename:path>')
 def static(filename):
     ''' serve static files '''
@@ -22,10 +25,17 @@ def show_index():
     return bottle.template('front')
 
 
-@app.route('/page/<page_name>')
-def show_page(page_name):
+@app.route('/page/<task>')
+def show_page(task):
     ''' return a page that has been rendered using a template '''
-    return bottle.template('page', page_name=page_name)
+    task_obj = Task()
+    _header = task_obj.get_header()
+    _body = task_obj.get_body()
+    return bottle.template('page', header=_header, body=_body)
+
+@app.route('/<page_name>')
+def show(page_name):
+    return bottle.template(page_name)
 
 
 class StripPathMiddleware(object):
@@ -43,5 +53,5 @@ if __name__ == '__main__':
     bottle.run(app=StripPathMiddleware(app),
                 server='wsgiref',
                 host='115.146.89.128',
-                port=90)
+                port=80)
 
