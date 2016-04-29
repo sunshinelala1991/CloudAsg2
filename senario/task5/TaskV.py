@@ -3,6 +3,7 @@
 import sys
 import couchdb
 from uuid import uuid4
+import warnings
 
 class TaskV(object):
 
@@ -45,9 +46,30 @@ class TaskV(object):
             dest_db = self._conn[dest_db]
             dest_db.save(doc)
         except couchdb.http.ResourceNotFound:
+            self._conn.create(dest_db)
+            warnings.warn('DB not found, automatically created the database "%s"\n' % dest_db)
+        except Exception:
+            sys.stderr.write('Database "%s" create error: %s\n' % (dest_db, ex))
+
+
+    def create(self, dbname):
+        try:
+            self._conn.create(dbname)
+        except couchdb.http.PreconditionFailed:
+            self._conn.delete(dbname)
+            self._conn.create(dbname)
+        except Exception:
+            sys.stderr.write('Database "%s" create error: %s\n' % (dbname, ex))
+
+
+    def drop(self, dbname):
+        try:
+            self._conn.delete(dbname)
+        except couchdb.http.ResourceNotFound:
             sys.stderr.write('No specified database in couchdb\n')
         except Exception:
-            sys.stderr.write(ex)
+            sys.stderr.write('Database "%s" delete error: %s\n' % (dbname, ex))
+            
         
         
 
