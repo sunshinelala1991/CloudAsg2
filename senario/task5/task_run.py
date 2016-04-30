@@ -12,11 +12,11 @@ DEBUG=True
 
 class Task(TaskV):
     
-    def __init__(self, conn_str, db):
-        TaskV.__init__(self, conn_str, db)
+    def __init__(self, src_conn, dst_conn, db):
+        TaskV.__init__(self, src_conn, dst_conn, db)
         self._day_dbstr= 'user_dayofweek_count'
         self._hour_dbstr= 'user_hour_count'
-        #self._prepare()
+        self._prepare()
     
     def _prepare(self,):
         ''' creat temp database that contribute
@@ -32,8 +32,7 @@ class Task(TaskV):
             emit(doc.user.id, day);
         }'''
 
-        user_day_count = {}
-        day_user_rs = self._db.query(map_fun)
+        user_day_count = day_user_rs = self._db.query(map_fun)
         for row in day_user_rs.rows:
             if row.key in user_day_count:
                 user_day_count[row.key][row.value] += 1
@@ -250,8 +249,7 @@ class Task(TaskV):
             
 
 if __name__ == '__main__':
-    obj = Task('http://115.146.89.121:5984/', 'melbourne_tweets')
-    obj._prepare()
+    obj = Task('http://115.146.89.191:5984/', 'http://115.146.89.121:5984/', 'melbourne_tweets')
     obj.day_tweet_stat()
     obj.hour_tweet_stat()
     obj.day_user_stat()

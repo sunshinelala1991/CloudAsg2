@@ -7,10 +7,11 @@ import warnings
 
 class TaskV(object):
 
-    def __init__(self, conn_str, db):
+    def __init__(self, conn_str, dest_str, db):
         try:
             self._conn = couchdb.Server(conn_str)
             self._db = self._conn[db]
+            self._dest = couchdb.Server(dest_str)
         except couchdb.http.ResourceNotFound:
             sys.stderr.write('No specified database in couchdb\n')
         except Exception:
@@ -43,10 +44,10 @@ class TaskV(object):
 
     def save(self, doc, dest_db):
         try:
-            dest_db = self._conn[dest_db]
+            dest_db = self._dest[dest_db]
             dest_db.save(doc)
         except couchdb.http.ResourceNotFound:
-            self._conn.create(dest_db)
+            self._dest.create(dest_db)
             warnings.warn('DB not found, automatically created the database "%s"\n' % dest_db)
         except Exception:
             sys.stderr.write('Database "%s" create error: %s\n' % (dest_db, ex))
@@ -54,17 +55,17 @@ class TaskV(object):
 
     def create(self, dbname):
         try:
-            self._conn.create(dbname)
+            self._dest.create(dbname)
         except couchdb.http.PreconditionFailed:
-            self._conn.delete(dbname)
-            self._conn.create(dbname)
+            self._dest.delete(dbname)
+            self._dest.create(dbname)
         except Exception:
             sys.stderr.write('Database "%s" create error: %s\n' % (dbname, ex))
 
 
     def drop(self, dbname):
         try:
-            self._conn.delete(dbname)
+            self._dest.delete(dbname)
         except couchdb.http.ResourceNotFound:
             sys.stderr.write('No specified database in couchdb\n')
         except Exception:
