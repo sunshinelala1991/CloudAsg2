@@ -45,7 +45,7 @@ def show_page():
     ''' return a page that has been rendered using a template '''
     return bottle.template('taskr4')
 
-@app.route('/page/taskr51')
+@app.route('/page/taskr5')
 def show_page():
     ''' return a page that has been rendered using a template '''
     return bottle.template('taskr5')
