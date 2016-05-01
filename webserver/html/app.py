@@ -45,10 +45,10 @@ def show_page():
     ''' return a page that has been rendered using a template '''
     return bottle.template('taskr4')
 
-@app.route('/page/taskr5')
+@app.route('/page/task5')
 def show_page():
     ''' return a page that has been rendered using a template '''
-    return bottle.template('taskr5')
+    return bottle.template('task5')
 
 @app.route('/<page_name>')
 def show(page_name):
