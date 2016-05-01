@@ -25,13 +25,30 @@ def show_index():
     return bottle.template('front')
 
 
-@app.route('/page/<task>')
-def show_page(task):
+@app.route('/page/task1')
+def show_page():
     ''' return a page that has been rendered using a template '''
-    task_obj = Task()
-    _header = task_obj.get_header()
-    _body = task_obj.get_body()
-    return bottle.template('page', header=_header, body=_body)
+    return bottle.template('task1')
+
+@app.route('/page/task2')
+def show_page():
+    ''' return a page that has been rendered using a template '''
+    return bottle.template('task2')
+
+@app.route('/page/task3')
+def show_page():
+    ''' return a page that has been rendered using a template '''
+    return bottle.template('task3')
+
+@app.route('/page/task4')
+def show_page():
+    ''' return a page that has been rendered using a template '''
+    return bottle.template('taskr4')
+
+@app.route('/page/taskr51')
+def show_page():
+    ''' return a page that has been rendered using a template '''
+    return bottle.template('taskr5')
 
 @app.route('/<page_name>')
 def show(page_name):
