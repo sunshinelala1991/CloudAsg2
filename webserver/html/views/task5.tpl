@@ -28,7 +28,6 @@
     <!--link href="../static/css/page.css" rel="stylesheet"-->
 
 	<!-- header for each task -->
-	{{header}}
 
   </head>
 <!-- NAVBAR
@@ -63,7 +62,6 @@
 
 
 	<!-- Content returned from python bottle script as for different page-->
-	{{body}}
 
 
       <!-- FOOTER -->

@@ -67,6 +67,7 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
@@ -106,6 +107,16 @@
               <h1>Description of the 4th Task</h1>
               <p>General description of the 4th task, with painting the backgroud as a image best representing the task</p>
               <p><a class="btn btn-lg btn-primary" href="/page/task4" role="button">Link to the presentation page of task 4</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="fourth-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Fourth slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Melbourne twitter prefer Friday night, You sure?</h1>
+              <p>When do melbourne twitter like to tweets. They more like to express their happiness or anger, and when exactly?</p>
+              <p><a class="btn btn-lg btn-primary" href="/page/task5" role="button">Check it out</a></p>
             </div>
           </div>
         </div>
@@ -181,6 +192,21 @@
           <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
         </div>
       </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Melbourne twitter prefer Friday night, You sure?</h2>
+          <p class="lead">When do melbourne twitter like to tweets. They more like to express their happiness or anger, and when exactly?</p>
+              <p><a class="btn btn-lg btn-default" href="/page/task5" role="button">Details</a></p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+
 
 
      <hr class="featurette-divider">
